@@ -1,24 +1,46 @@
 # AI-DNA
 
-AI-DNA is a runnable prototype of the "evolvable AI" concept described in the repository's original design note. It turns the document into a small Python system with four layers:
+AI-DNA is a runnable prototype for an evolvable agent architecture inspired by biological DNA. Instead of treating intelligence as one monolithic model, it splits capability into small codon-like units, composes them into genes, regulates them with a genome, and lets the system improve through mutation, crossover, selection, and epigenetic tuning.
+
+## Why this repo is interesting
+
+- It turns a pure concept document into a working Python prototype.
+- It shows measurable gains without retraining the underlying model weights.
+- It includes built-in benchmarking, evolution search, and report generation.
+- It can wrap both a rule-based baseline and small Hugging Face models.
+
+## Core idea
+
+AI-DNA uses four layers:
 
 1. `A/T/C/G` primitive operators.
 2. Codon-to-skill mappings.
 3. Gene execution pipelines.
-4. A genome with regulation, epigenetic tuning, mutation, crossover, and selection.
+4. A regulated genome that can evolve.
 
-The project is deliberately lightweight. The core runtime uses only the Python standard library. A Hugging Face adapter is included as an optional way to test whether AI-DNA style routing and tool use can improve a small language model on grounded tasks.
+In the current prototype, math tasks route into exact-calculation codons, context QA routes into attention and memory codons, and general generation can still call a backing language model.
+
+## Current result
+
+On the built-in benchmark, AI-DNA lifted all tested backends from `33%` baseline accuracy to `100%` by using architecture-level routing and tools instead of changing model weights.
+
+| Model | Baseline | AI-DNA | Gain |
+| --- | ---: | ---: | ---: |
+| rule-based | 33% | 100% | 67% |
+| google/flan-t5-small | 33% | 100% | 67% |
+| HuggingFaceTB/SmolLM2-135M-Instruct | 33% | 100% | 67% |
+
+![AI-DNA dashboard](outputs/ai_dna_dashboard.png)
 
 ## What is implemented
 
 - Primitive operators for attention, transformation, control, and generation.
-- A codon registry with six default skill units: semantic understanding, logic reasoning, planning, text generation, arithmetic calculation, and memory storage.
+- A codon registry with semantic understanding, logic reasoning, planning, text generation, arithmetic calculation, and memory storage.
 - A DNA parser that decodes nucleotide sequences into executable codons.
 - Genes and genomes with regulation rules and scenario-specific epigenetic marks.
 - Evolution helpers for mutation, crossover, natural selection, and short search loops.
-- A benchmark harness that compares a baseline model against AI-DNA enhanced execution.
-- A CLI for demos, benchmarking, evolution experiments, and result visualization.
-- Generated experiment artifacts under `outputs/`, including comparison charts and CSV summaries.
+- A benchmark harness that compares a baseline model with AI-DNA-enhanced execution.
+- A `report` command that regenerates charts, CSVs, JSON summaries, and a markdown report.
 
 ## Install
 
@@ -28,13 +50,25 @@ Core runtime:
 pip install -e .
 ```
 
-Optional Hugging Face model support:
+Hugging Face model support:
 
 ```bash
 pip install -e .[hf]
 ```
 
-## Quick Start
+Reporting and charts:
+
+```bash
+pip install -e .[report]
+```
+
+Everything:
+
+```bash
+pip install -e .[full]
+```
+
+## Quick start
 
 Run the built-in demo:
 
@@ -42,45 +76,41 @@ Run the built-in demo:
 python -m ai_dna demo
 ```
 
-Run a single prompt:
+Run a single task:
 
 ```bash
 python -m ai_dna run --task-type math --prompt "24 marbles are shared equally among 6 kids. How many marbles does each kid get?"
 ```
 
-Run the baseline vs AI-DNA benchmark with the built-in rule-based baseline:
-
-```bash
-python -m ai_dna benchmark
-```
-
-Run the benchmark with a real Hugging Face model:
+Compare a baseline model against AI-DNA:
 
 ```bash
 python -m ai_dna benchmark --model google/flan-t5-small
 ```
 
-Run a short evolutionary search:
+Run a short evolution search:
 
 ```bash
 python -m ai_dna evolve --generations 8 --population 12
 ```
 
-## Suggested model for the first experiment
+Generate the full experiment report and charts:
 
-Use a small instruction-following model first so the effect of AI-DNA routing is easy to observe on CPU:
+```bash
+python -m ai_dna report
+```
 
-- `google/flan-t5-small` for a very light experiment.
-- `HuggingFaceTB/SmolLM2-135M-Instruct` if you want a tiny causal model.
+The generated artifacts are written to `outputs/`.
 
-The benchmark is intentionally grounded around exact math and context-bound QA. In these settings AI-DNA can improve a small base model without retraining by routing math questions through the `ACC` codon and context questions through the `TCG/TGG/ATC` path.
+## Recommended models to try
 
-## Repo Layout
+- `google/flan-t5-small` for a light first experiment on CPU.
+- `HuggingFaceTB/SmolLM2-135M-Instruct` for a tiny instruction model baseline.
+
+## Repository layout
 
 ```text
 ai_dna/
-  __init__.py
-  __main__.py
   benchmarks.py
   cli.py
   codons.py
@@ -89,15 +119,23 @@ ai_dna/
   models.py
   operators.py
   parser.py
+  reporting.py
   runtime.py
-  types.py
-examples/
 outputs/
+examples/
 tests/
 ```
 
+## Reproducibility
+
+- Summary table: `outputs/benchmark_summary.csv`
+- Per-sample outputs: `outputs/benchmark_details.csv`
+- Evolution history: `outputs/evolution_history.csv`
+- Markdown report: `outputs/REPORT.md`
+- Dashboard image: `outputs/ai_dna_dashboard.png`
+
 ## Notes
 
-- The architecture is a prototype, not a replacement for model training.
-- The clearest near-term gain comes from modular routing, tool invocation, and evolutionary search over sequencing and regulation.
-- The benchmark is small on purpose so you can iterate on codons and genes quickly.
+- This is a prototype for architecture exploration, not a replacement for large-scale training.
+- The current benchmark is intentionally small and grounded so the routing effect is easy to inspect.
+- The next natural step is to scale the benchmark and test stronger back-end models.

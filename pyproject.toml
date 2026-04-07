@@ -1,4 +1,4 @@
-﻿[build-system]
+[build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
@@ -14,6 +14,18 @@ dependencies = []
 hf = [
   "transformers>=4.41",
   "torch>=2.2",
+]
+report = [
+  "matplotlib>=3.8",
+  "pandas>=2.0",
+  "seaborn>=0.13",
+]
+full = [
+  "transformers>=4.41",
+  "torch>=2.2",
+  "matplotlib>=3.8",
+  "pandas>=2.0",
+  "seaborn>=0.13",
 ]
 
 [tool.setuptools]

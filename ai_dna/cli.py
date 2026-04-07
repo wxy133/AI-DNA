@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 
@@ -6,6 +6,7 @@ from .benchmarks import DEFAULT_BENCHMARK, run_benchmark
 from .evolution import evolve_population
 from .genome import build_default_genome, build_unoptimized_genome
 from .models import build_model_adapter
+from .reporting import DEFAULT_REPORT_MODELS, generate_experiment_report
 from .runtime import AIDNAAgent
 from .types import TaskSample
 
@@ -32,6 +33,13 @@ def _build_parser() -> argparse.ArgumentParser:
     evolve_parser.add_argument("--generations", type=int, default=5)
     evolve_parser.add_argument("--population", type=int, default=8)
     evolve_parser.add_argument("--mutation-rate", type=float, default=0.12)
+
+    report_parser = subparsers.add_parser("report", help="Run the full experiment suite and generate charts.")
+    report_parser.add_argument("--model", action="append", dest="models")
+    report_parser.add_argument("--output-dir", default="outputs")
+    report_parser.add_argument("--generations", type=int, default=8)
+    report_parser.add_argument("--population", type=int, default=10)
+    report_parser.add_argument("--mutation-rate", type=float, default=0.12)
 
     return parser
 
@@ -110,6 +118,26 @@ def _print_evolution(args: argparse.Namespace) -> None:
     print(f"Re-scored best fitness: {after:.2%}")
 
 
+def _print_report(args: argparse.Namespace) -> None:
+    models = tuple(args.models or DEFAULT_REPORT_MODELS)
+    artifacts = generate_experiment_report(
+        output_dir=args.output_dir,
+        model_names=models,
+        generations=args.generations,
+        population_size=args.population,
+        mutation_rate=args.mutation_rate,
+    )
+    print(f"Generated report in: {artifacts.output_dir}")
+    for row in artifacts.summary:
+        print(
+            f"- {row['model']}: baseline={row['baseline_accuracy']:.2%}, "
+            f"ai_dna={row['ai_dna_accuracy']:.2%}, gain={row['improvement']:.2%}"
+        )
+    print("Artifacts:")
+    for name, path in artifacts.files.items():
+        print(f"  {name}: {path}")
+
+
 def main(argv: list[str] | None = None) -> None:
     parser = _build_parser()
     args = parser.parse_args(argv)
@@ -140,6 +168,10 @@ def main(argv: list[str] | None = None) -> None:
 
     if args.command == "evolve":
         _print_evolution(args)
+        return
+
+    if args.command == "report":
+        _print_report(args)
         return
 
 
