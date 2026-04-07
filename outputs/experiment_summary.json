@@ -1,0 +1,78 @@
+{
+  "summary": [
+    {
+      "model": "rule-based",
+      "baseline_accuracy": 0.3333333333333333,
+      "ai_dna_accuracy": 1.0,
+      "improvement": 0.6666666666666667
+    },
+    {
+      "model": "google/flan-t5-small",
+      "baseline_accuracy": 0.3333333333333333,
+      "ai_dna_accuracy": 1.0,
+      "improvement": 0.6666666666666667
+    },
+    {
+      "model": "HuggingFaceTB/SmolLM2-135M-Instruct",
+      "baseline_accuracy": 0.3333333333333333,
+      "ai_dna_accuracy": 1.0,
+      "improvement": 0.6666666666666667
+    }
+  ],
+  "evolution_history": [
+    {
+      "generation": 0,
+      "best_fitness": 0.0,
+      "avg_elite_fitness": 0.0,
+      "best_so_far": 0.0
+    },
+    {
+      "generation": 1,
+      "best_fitness": 0.0,
+      "avg_elite_fitness": 0.0,
+      "best_so_far": 0.0
+    },
+    {
+      "generation": 2,
+      "best_fitness": 0.0,
+      "avg_elite_fitness": 0.0,
+      "best_so_far": 0.0
+    },
+    {
+      "generation": 3,
+      "best_fitness": 0.0,
+      "avg_elite_fitness": 0.0,
+      "best_so_far": 0.0
+    },
+    {
+      "generation": 4,
+      "best_fitness": 0.0,
+      "avg_elite_fitness": 0.0,
+      "best_so_far": 0.0
+    },
+    {
+      "generation": 5,
+      "best_fitness": 1.0,
+      "avg_elite_fitness": 0.2,
+      "best_so_far": 1.0
+    },
+    {
+      "generation": 6,
+      "best_fitness": 1.0,
+      "avg_elite_fitness": 0.2,
+      "best_so_far": 1.0
+    },
+    {
+      "generation": 7,
+      "best_fitness": 1.0,
+      "avg_elite_fitness": 0.2,
+      "best_so_far": 1.0
+    },
+    {
+      "generation": 8,
+      "best_fitness": 1.0,
+      "avg_elite_fitness": 0.2,
+      "best_so_far": 1.0
+    }
+  ]
+}
