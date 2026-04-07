@@ -1,8 +1,16 @@
 # AI-DNA
 
+[![Stars](https://img.shields.io/github/stars/wxy133/AI-DNA?style=social)](https://github.com/wxy133/AI-DNA/stargazers)
+[![Last Commit](https://img.shields.io/github/last-commit/wxy133/AI-DNA)](https://github.com/wxy133/AI-DNA/commits/main)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](https://www.python.org/)
+
+English | [????](README.zh-CN.md)
+
 AI-DNA is a runnable prototype for an evolvable agent architecture inspired by biological DNA. Instead of treating intelligence as one monolithic model, it splits capability into small codon-like units, composes them into genes, regulates them with a genome, and lets the system improve through mutation, crossover, selection, and epigenetic tuning.
 
-## Why this repo is interesting
+![AI-DNA social preview](assets/social-preview.png)
+
+## Why this repo is worth checking
 
 - It turns a pure concept document into a working Python prototype.
 - It shows measurable gains without retraining the underlying model weights.
@@ -107,6 +115,13 @@ The generated artifacts are written to `outputs/`.
 - `google/flan-t5-small` for a light first experiment on CPU.
 - `HuggingFaceTB/SmolLM2-135M-Instruct` for a tiny instruction model baseline.
 
+## Promotion kit
+
+- Chinese README: [README.zh-CN.md](README.zh-CN.md)
+- Share copy templates: [docs/promo-kit.md](docs/promo-kit.md)
+- Citation guidance: [CITATION.md](CITATION.md)
+- Full generated experiment report: [outputs/REPORT.md](outputs/REPORT.md)
+
 ## Repository layout
 
 ```text
@@ -121,8 +136,10 @@ ai_dna/
   parser.py
   reporting.py
   runtime.py
+assets/
 outputs/
 examples/
+docs/
 tests/
 ```
 
