@@ -1,0 +1,19 @@
+﻿model,sample_id,task_type,expected,baseline_output,ai_dna_output,baseline_score,ai_dna_score
+rule-based,math-add-word,math,17,12,17,0.0,1.0
+rule-based,math-subtract-word,math,23,30,23,0.0,1.0
+rule-based,math-multiply-word,math,24,6,24,0.0,1.0
+rule-based,math-divide-word,math,4,24,4,0.0,1.0
+rule-based,context-planet,context_qa,Mercury,Mercury,Mercury,1.0,1.0
+rule-based,context-schedule,context_qa,Friday,Friday,Friday,1.0,1.0
+google/flan-t5-small,math-add-word,math,17,Lena has 12 + 5 = 24 shells. She has 24 - 5 = 14 shells now.,17,0.0,1.0
+google/flan-t5-small,math-subtract-word,math,23,7,23,0.0,1.0
+google/flan-t5-small,math-multiply-word,math,24,4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs have 6 batteries. 4 packs,24,0.0,1.0
+google/flan-t5-small,math-divide-word,math,4,24 marbles are shared equally among 6 kids. 6 kids get 24 marbles / 6 kids = 8 marbles. Each kid gets 8 marbles / kid = 6 marbles. Each kid gets 8 marbles / kid = 6 marbles. Each kid gets 6 marbles / kid = 3 marbles. Each kid gets 3 marbles / kid = 3 marbles. Each kid gets 3 marbles / kid = 3 marbles. Each kid gets 3 marbles / kid = 3 marbles. Each kid gets 3 marbles / kid = 3 marbles. Each kid gets 3 marble,4,0.0,1.0
+google/flan-t5-small,context-planet,context_qa,Mercury,Mercury,Mercury,1.0,1.0
+google/flan-t5-small,context-schedule,context_qa,Friday,Friday,Friday,1.0,1.0
+HuggingFaceTB/SmolLM2-135M-Instruct,math-add-word,math,17,,17,0.0,1.0
+HuggingFaceTB/SmolLM2-135M-Instruct,math-subtract-word,math,23,,23,0.0,1.0
+HuggingFaceTB/SmolLM2-135M-Instruct,math-multiply-word,math,24,,24,0.0,1.0
+HuggingFaceTB/SmolLM2-135M-Instruct,math-divide-word,math,4,,4,0.0,1.0
+HuggingFaceTB/SmolLM2-135M-Instruct,context-planet,context_qa,Mercury,Answer: Mercury is the closest planet to the Sun.,Mercury,1.0,1.0
+HuggingFaceTB/SmolLM2-135M-Instruct,context-schedule,context_qa,Friday,Answer: Project Nova launches on Friday.,Friday,1.0,1.0

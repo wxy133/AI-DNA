@@ -1,0 +1,4 @@
+﻿model,baseline_accuracy,ai_dna_accuracy,improvement
+rule-based,0.3333333333333333,1.0,0.6666666666666667
+google/flan-t5-small,0.3333333333333333,1.0,0.6666666666666667
+HuggingFaceTB/SmolLM2-135M-Instruct,0.3333333333333333,1.0,0.6666666666666667
